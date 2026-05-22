@@ -1,0 +1,16 @@
+node_modules/
+dist/
+out/
+.env
+.env.*
+!.env.example
+
+# Remotion / Chrome Headless Shell cache
+node_modules/.remotion/
+
+# OS & editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

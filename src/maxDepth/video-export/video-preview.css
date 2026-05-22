@@ -1,0 +1,41 @@
+.md-video-preview {
+  min-height: 100vh;
+  padding: 24px;
+  background: #1a1814;
+  color: #f5f0e6;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+
+.md-video-preview__head {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+}
+
+.md-video-preview__head h1 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.md-video-preview__head p {
+  margin: 0;
+  color: #c9bea8;
+  font-size: 14px;
+}
+
+.md-video-preview__player {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.md-deck--video-export .md-slide {
+  position: absolute;
+  inset: 0;
+}
+
+.md-deck--video-export {
+  width: 100%;
+  height: 100%;
+}
