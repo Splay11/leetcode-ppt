@@ -4,6 +4,7 @@ out/
 .env
 .env.*
 !.env.example
+.npm-cache/
 
 # Remotion / Chrome Headless Shell cache
 node_modules/.remotion/

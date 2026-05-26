@@ -6,7 +6,17 @@ import tailwindcss from "@tailwindcss/vite";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/** GitHub Pages 项目站 base，由 CI 注入 VITE_BASE=/仓库名/ */
+function normalizePagesBase(base) {
+  if (!base) return "/";
+  return base.endsWith("/") ? base : `${base}/`;
+}
+
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const pagesBase = normalizePagesBase(process.env.VITE_BASE);
+
 export default defineConfig({
+  base: isGitHubPages ? pagesBase : "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

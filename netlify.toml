@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  VITE_TOPIC = "maxDepth"
+
+# SPA：静态文件优先，其余回落到 index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

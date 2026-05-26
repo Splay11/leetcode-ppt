@@ -1,5 +1,7 @@
-import MaxDepthPresentation from "./maxDepth/MaxDepthPresentation.jsx";
+import { resolveActiveTopic } from "./motion/registry.js";
 
 export default function App() {
-  return <MaxDepthPresentation />;
+  const topic = resolveActiveTopic();
+  const Deck = topic.component;
+  return <Deck />;
 }

@@ -1,0 +1,211 @@
+/* LC 226 翻转二叉树 — 样式前缀 ibt-；可调变量见 animConfig DECK_CSS_VARS */
+
+.ibt-deck {
+  --ink: #1f2d24;
+  --muted: #5c6b62;
+  --green: #2d8f5f;
+  --gold: #c9921a;
+  --paper: #f7fbf8;
+
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  background:
+    radial-gradient(circle at 20% 14%, rgba(255, 255, 255, 0.82), transparent 32%),
+    radial-gradient(circle at 78% 22%, rgba(180, 230, 200, 0.45), transparent 30%),
+    linear-gradient(140deg, #e4efe8, #f4faf6 48%, #dce9e0);
+}
+
+.ibt-deck::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(45, 143, 95, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 143, 95, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+}
+
+html.has-motion-tuning .ibt-deck::before {
+  position: absolute;
+}
+
+.ibt-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ibt-cover-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px;
+}
+
+.ibt-cover-hero {
+  position: relative;
+  z-index: 2;
+  margin-top: var(--ibt-cover-stage-offset-y, 120px);
+  text-align: center;
+}
+
+.ibt-title-card {
+  transform: translateX(calc((var(--ibt-cover-title-left, 50%) - 50%) * 1))
+    scale(var(--ibt-cover-title-layout-size, 1));
+  transform-origin: center top;
+}
+
+.ibt-leetcode {
+  margin: 0 0 8px;
+  font-size: var(--ibt-cover-leetcode-size, 22px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--green);
+}
+
+.ibt-main-title {
+  margin: 0;
+  font-size: var(--ibt-cover-title-size, 46px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+.ibt-tagline {
+  margin: 14px 0 0;
+  font-size: var(--ibt-cover-tagline-size, 20px);
+  color: var(--muted);
+}
+
+.ibt-difficulty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ibt-difficulty-slot {
+  overflow: hidden;
+}
+
+.ibt-difficulty {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: var(--ibt-cover-difficulty-size, 28px);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  transform: translateX(calc((var(--ibt-cover-difficulty-left, 50%) - 50%) * 1))
+    scale(var(--ibt-cover-difficulty-layout-size, 1));
+}
+
+.ibt-difficulty--easy {
+  color: #1f6b42;
+  background: rgba(45, 143, 95, 0.16);
+  border: 1px solid rgba(45, 143, 95, 0.35);
+}
+
+.ibt-placeholder-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 48px;
+  text-align: center;
+}
+
+.ibt-placeholder-eyebrow {
+  margin: 0 0 12px;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.ibt-placeholder-title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.ibt-placeholder-hint {
+  margin: 20px 0 0;
+  max-width: 520px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.ibt-progress-dock {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+
+.ibt-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(45, 143, 95, 0.2);
+  box-shadow: 0 8px 24px rgba(31, 45, 36, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.ibt-progress button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(45, 143, 95, 0.12);
+  color: var(--ink);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.ibt-progress-text {
+  font-size: 14px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.ibt-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.ibt-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(45, 143, 95, 0.25);
+}
+
+.ibt-dot.active {
+  background: var(--green);
+}
+
+.ibt-hint {
+  position: absolute;
+  right: 24px;
+  bottom: 12px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.75;
+}
