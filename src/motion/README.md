@@ -33,9 +33,10 @@ src/motion/
 # 默认：invertBinaryTree（本分支开发题）
 npm run dev
 
-# 浏览器切换题目
-# http://localhost:5173/?topic=maxDepth
-# http://localhost:5173/?topic=invertBinaryTree
+# 浏览器切换题目（路径推荐）
+# http://localhost:5173/maxDepth
+# http://localhost:5173/invertBinaryTree
+# 或旧参数：?topic=maxDepth
 
 # 或启动前指定环境变量（PowerShell）
 $env:VITE_TOPIC="maxDepth"; npm run dev
@@ -52,11 +53,15 @@ $env:VITE_TOPIC="maxDepth"; npm run dev
 Pages 的 `base` 路径**自动跟随仓库名**，无需改代码。  
 若新仓库为 [`Splay11/leetcode-ppt`](https://github.com/Splay11/leetcode-ppt)，公网地址为：
 
-```
-https://splay11.github.io/leetcode-ppt/
-```
+| 页面 | URL |
+|------|-----|
+| 题目目录 | https://splay11.github.io/leetcode-ppt/ |
+| maxDepth | https://splay11.github.io/leetcode-ppt/maxDepth/ |
+| invertBinaryTree | https://splay11.github.io/leetcode-ppt/invertBinaryTree/ |
 
-构建默认 `VITE_TOPIC=maxDepth`，打开即 maxDepth 正式演示。
+路径格式：`/{topicId}/`（兼容旧链接 `?topic=maxDepth`）。
+
+新增可部署题目时，在 `src/motion/deployedTopics.js` 的 `DEPLOYED_TOPICS` 里追加 id。
 
 ### 1. 在 GitHub 新建空仓库
 
@@ -96,9 +101,9 @@ git push -u origin main
 
 ```powershell
 $env:GITHUB_PAGES="true"
-$env:VITE_TOPIC="maxDepth"
-$env:VITE_BASE="/<新仓库名>/"
+$env:VITE_BASE="/leetcode-ppt/"
 npm run build
 npm run preview
-# 打开 http://localhost:4173/<新仓库名>/
+# 目录页 http://localhost:4173/leetcode-ppt/
+# maxDepth  http://localhost:4173/leetcode-ppt/maxDepth/
 ```

@@ -49,11 +49,37 @@ export const MOTION_TOPICS = [
   },
 ];
 
-const DEFAULT_TOPIC_ID = import.meta.env.VITE_TOPIC || "invertBinaryTree";
+const DEFAULT_TOPIC_ID = import.meta.env.VITE_TOPIC || null;
+
+function stripBaseFromPathname(pathname) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const normalized = pathname.replace(/\/$/, "") || "/";
+  if (!base || base === "/" || !normalized.startsWith(base)) {
+    return normalized;
+  }
+  const rest = normalized.slice(base.length) || "/";
+  return rest.startsWith("/") ? rest : `/${rest}`;
+}
+
+/** 从 URL 路径解析题目 id，如 /leetcode-ppt/maxDepth → maxDepth */
+export function getTopicIdFromPath() {
+  if (typeof window === "undefined") return null;
+
+  const segment = stripBaseFromPathname(window.location.pathname)
+    .split("/")
+    .filter(Boolean)[0];
+
+  if (!segment || segment === "index.html") return null;
+  return segment;
+}
 
 export function getTopicIdFromLocation() {
   if (typeof window === "undefined") return null;
-  return new URLSearchParams(window.location.search).get("topic");
+
+  const fromQuery = new URLSearchParams(window.location.search).get("topic");
+  if (fromQuery) return fromQuery;
+
+  return getTopicIdFromPath();
 }
 
 export function resolveTopicId() {
@@ -66,14 +92,16 @@ export function getTopicById(id) {
 
 export function resolveActiveTopic() {
   const id = resolveTopicId();
+  if (!id) return null;
+
   const topic = getTopicById(id);
   if (!topic?.component) {
-    const fallback = getTopicById(DEFAULT_TOPIC_ID);
+    const fallback = DEFAULT_TOPIC_ID ? getTopicById(DEFAULT_TOPIC_ID) : null;
     if (fallback?.component) {
       console.warn(`[motion] 未知或未实现题目 "${id}"，回退到 ${DEFAULT_TOPIC_ID}`);
       return fallback;
     }
-    throw new Error(`[motion] 无法加载题目: ${id}`);
+    return null;
   }
   return topic;
 }
